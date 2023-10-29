@@ -120,8 +120,10 @@ public class PokerHand
 		}else if(isFullHouse()){
 			retString = "Full House";
 
+		}else if(true){
+
 		}
-		
+
 
 		return retString;
 	}
