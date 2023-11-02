@@ -7,7 +7,7 @@ public class Submission_EnhancedFor{
         int[] values = new int[20];
 
         for (int i = 0; i < values.length; i++) {
-            values[i] = ((int)(Math.random() * 99)) + 1;
+            values[i] = ((int)(Math.random() * 100)) + 1;
         }
         for (int num : values) {
             System.out.println(num);
