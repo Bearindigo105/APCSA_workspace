@@ -115,6 +115,12 @@ public class CompSciCheckerBoard
 	public boolean isValidMove(int originalRow, int originalColumn , int newRow, int newColumn)
 	{
 		//TODO Part B Gitterdone!!
+
+		CompSciChecker originalChecker = board[originalRow][originalColumn];
+		String originalColor = originalChecker.getColor();
+
+		if()
+
 		return false; //delete this return statement and write your code!
 		
 	}
