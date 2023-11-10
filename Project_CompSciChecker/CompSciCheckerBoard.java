@@ -48,8 +48,17 @@ public class CompSciCheckerBoard
 	
 	public CompSciCheckerBoard()
 	{
-		//TODO PART A GitterDone!
+		CompSciChecker arrPlaceHolder[][] = {{new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null},
+		                                     {null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W")},
+											 {new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null},
+											 {null, null, null, null, null, null, null, null},
+											 {null, null, null, null, null, null, null, null},
+											 {null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B")},
+											 {new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null},
+											 {null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B")},
+											};
 		
+	    board = arrPlaceHolder;
 	}
 	
 	
