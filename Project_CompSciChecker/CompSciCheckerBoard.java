@@ -47,20 +47,14 @@ public class CompSciCheckerBoard {
 
 	public CompSciCheckerBoard() {
 		CompSciChecker arrPlaceHolder[][] = {
-				{ new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null,
-						new CompSciChecker("W"), null },
-				{ null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null,
-						new CompSciChecker("W") },
-				{ new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null,
-						new CompSciChecker("W"), null },
+				{ new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null },
+				{ null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W") },
+				{ new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null },
 				{ null, null, null, null, null, null, null, null },
 				{ null, null, null, null, null, null, null, null },
-				{ null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null,
-						new CompSciChecker("B") },
-				{ new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null,
-						new CompSciChecker("B"), null },
-				{ null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null,
-						new CompSciChecker("B") },
+				{ null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B") },
+				{ new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null },
+				{ null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B") },
 		};
 
 		board = arrPlaceHolder;
@@ -109,23 +103,70 @@ public class CompSciCheckerBoard {
 	 * write the method isValidMove. return true if the desired move
 	 * is valid and false if it is not.
 	 */
-
+    /**
+	 * 
+	 * @param originalRow
+	 * @param originalColumn
+	 * @param newRow
+	 * @param newColumn
+	 * @return true if the move is:
+	 * 				one space fwd, horizontal, or diagonal.
+	 * 				two spaces jumping an opp piece.
+	 * 				or going to an empty square.
+	 */
 	public boolean isValidMove(int originalRow, int originalColumn, int newRow, int newColumn) {
-		// TODO Part B Gitterdone!!
 
-		String originalColor = board[originalRow][originalColumn].getColor();
-
-		if (originalColumn != newColumn && originalRow != newRow) {
-			if (originalColumn == newColumn || originalColumn + 1 == newColumn || originalColumn - 1 == newColumn) {
-				if(originalColor == "W"){
-					
-				}
-			}
+		if (board[originalRow][originalColumn] == null) {
+			return false;
 		}
 
-		return false; // delete this return statement and write your code!
+		int rowDiff = newRow - originalRow;
+		int columnDiff = newColumn - originalColumn;
 
+		if (!checkDirection(originalRow, originalColumn, newRow)){
+			return false;
+		}
+		
+		if (Math.abs(rowDiff) == 1 && Math.abs(columnDiff) == 1) {
+			return true;
+		}
+
+		if (Math.abs(rowDiff) == 2 && Math.abs(columnDiff) == 2) {
+			int jmpRow = originalRow + rowDiff / 2;
+            int jmpColumn = originalColumn + columnDiff / 2;
+
+			if((board[jmpRow][jmpColumn].getColor() == "W") != (board[originalRow][originalColumn].getColor() == "W")){
+				return true;
+			}
+
+		}
+
+		return false;
 	}
+
+	/**
+	 * 
+	 * @param originalRow
+	 * @param originalColumn
+	 * @param newRow
+	 * @return true if the new row is in the correct direction.
+	*/ 
+	private boolean checkDirection(int originalRow, int originalColumn, int newRow){
+		
+		boolean retBool = false;
+
+		if (originalRow != newRow) {
+			int direction = board[originalRow][originalColumn].getColor() == "W" ? 1 : -1;
+
+			retBool = originalRow * direction < newRow * direction;
+
+			if (!retBool && board[originalRow][originalColumn].reachedEnd()) {
+				retBool = !retBool;
+			}
+		}
+		return retBool;
+	}
+	
 
 	/*
 	 * Finally you will write the method makeMove. This method will
@@ -139,6 +180,7 @@ public class CompSciCheckerBoard {
 
 	public void makeMove(int originalRow, int originalColumn, int newRow, int newColumn) {
 		// TODO Part C Gitterdone!!!
+
 	}
 
 	/**
