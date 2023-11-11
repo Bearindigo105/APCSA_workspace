@@ -48,8 +48,17 @@ public class CompSciCheckerBoard
 	
 	public CompSciCheckerBoard()
 	{
-		//TODO PART A GitterDone!
-		CompSciChecker arrPlaceHolder[][] = {};
+		CompSciChecker arrPlaceHolder[][] = {{new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null},
+		                                     {null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W")},
+											 {new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null},
+											 {null, null, null, null, null, null, null, null},
+											 {null, null, null, null, null, null, null, null},
+											 {null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B")},
+											 {new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null},
+											 {null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B")},
+											};
+		
+	    board = arrPlaceHolder;
 	}
 	
 	
@@ -106,6 +115,12 @@ public class CompSciCheckerBoard
 	public boolean isValidMove(int originalRow, int originalColumn , int newRow, int newColumn)
 	{
 		//TODO Part B Gitterdone!!
+
+		CompSciChecker originalChecker = board[originalRow][originalColumn];
+		String originalColor = originalChecker.getColor();
+
+		if()
+
 		return false; //delete this return statement and write your code!
 		
 	}
