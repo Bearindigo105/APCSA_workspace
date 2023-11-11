@@ -49,7 +49,7 @@ public class CompSciCheckerBoard
 	public CompSciCheckerBoard()
 	{
 		//TODO PART A GitterDone!
-		
+		CompSciChecker arrPlaceHolder[][] = {};
 	}
 	
 	
