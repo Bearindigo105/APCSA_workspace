@@ -30,14 +30,14 @@ public class CompSciCheckerBoard {
 	 * "B" to denote black pieces when constructed.
 	 * Once created the board should look like this:
 	 * 
-	 * _ _ _ _ _ _ _ _
-	 * |W W W W |
-	 * | W W W W|
-	 * |W W W W |
-	 * | |
-	 * | |
-	 * | B B B B|
-	 * |B B B B |
+	 *  _ _ _ _ _ _ _ _
+	 * |W   W   W   W  |
+	 * |  W   W   W   W|
+	 * |W   W   W   W  |
+	 * |               |
+	 * |               |
+	 * |  B   B   B   B|
+	 * |B   B   B   B  |
 	 * |_ B _ B _ B _ B|
 	 * 
 	 * Empty Spaces must have a value of null
