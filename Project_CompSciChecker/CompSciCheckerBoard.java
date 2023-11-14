@@ -46,18 +46,39 @@ public class CompSciCheckerBoard {
 	 */
 
 	public CompSciCheckerBoard() {
-		CompSciChecker arrPlaceHolder[][] = {
-				{ new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null },
-				{ null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W") },
-				{ new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null, new CompSciChecker("W"), null },
-				{ null, null, null, null, null, null, null, null },
-				{ null, null, null, null, null, null, null, null },
-				{ null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B") },
-				{ new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null },
-				{ null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B"), null, new CompSciChecker("B") },
-		};
-
-		board = arrPlaceHolder;
+		board = new CompSciChecker[8][8];
+		
+		for (int i = 0; i < 3; i++) {
+			if (i != 1){
+				for (int j = 0; j < board.length; j++) {
+					if (j % 2 == 0) {
+						board[i][j] = new CompSciChecker("W");
+					}
+				}
+			}else{
+				for (int j = 0; j < board.length; j++) {
+					if ((j + 1) % 2 == 0) {
+						board[i][j] = new CompSciChecker("W");
+					}
+				}
+			}
+		}
+		
+		for (int i = 5; i < 8; i++) {
+			if (i == 6){
+				for (int j = 0; j < board.length; j++) {
+					if (j % 2 == 0) {
+						board[i][j] = new CompSciChecker("B");
+					}
+				}
+			}else{
+				for (int j = 0; j < board.length; j++) {
+					if ((j + 1) % 2 == 0) {
+						board[i][j] = new CompSciChecker("B");
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -123,7 +144,26 @@ public class CompSciCheckerBoard {
 		int rowDiff = newRow - originalRow;
 		int columnDiff = newColumn - originalColumn;
 
-		if (!checkDirection(originalRow, originalColumn, newRow)){
+		boolean isDirectionCorrect = false;
+
+		if (originalRow != newRow) {
+			
+			int direction;
+
+			if(board[originalRow][originalColumn].getColor() == "W"){
+				direction = 1;
+			}else{
+				direction = -1;
+			}
+			
+			isDirectionCorrect = originalRow * direction < newRow * direction;
+
+			if (!isDirectionCorrect && board[originalRow][originalColumn].reachedEnd()) {
+				isDirectionCorrect = !isDirectionCorrect;
+			}
+		}
+
+		if (isDirectionCorrect){
 			return false;
 		}
 		
@@ -132,41 +172,15 @@ public class CompSciCheckerBoard {
 		}
 
 		if (Math.abs(rowDiff) == 2 && Math.abs(columnDiff) == 2) {
-			int jmpRow = originalRow + rowDiff / 2;
-            int jmpColumn = originalColumn + columnDiff / 2;
 
-			if((board[jmpRow][jmpColumn].getColor() == "W") != (board[originalRow][originalColumn].getColor() == "W")){
+			if((board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2].getColor() == "W") != (board[originalRow][originalColumn].getColor() == "W")){
 				return true;
 			}
 
 		}
-
+		//TODO: A Lot
 		return false;
 	}
-
-	/**
-	 * 
-	 * @param originalRow
-	 * @param originalColumn
-	 * @param newRow
-	 * @return true if the new row is in the correct direction.
-	*/ 
-	private boolean checkDirection(int originalRow, int originalColumn, int newRow){
-		
-		boolean retBool = false;
-
-		if (originalRow != newRow) {
-			int direction = board[originalRow][originalColumn].getColor() == "W" ? 1 : -1;
-
-			retBool = originalRow * direction < newRow * direction;
-
-			if (!retBool && board[originalRow][originalColumn].reachedEnd()) {
-				retBool = !retBool;
-			}
-		}
-		return retBool;
-	}
-	
 
 	/*
 	 * Finally you will write the method makeMove. This method will
@@ -177,10 +191,27 @@ public class CompSciCheckerBoard {
 	 * this method.
 	 * 
 	 */
-
+	/**
+	 * 
+	 * @param originalRow
+	 * @param originalColumn
+	 * @param newRow
+	 * @param newColumn
+	 */
 	public void makeMove(int originalRow, int originalColumn, int newRow, int newColumn) {
-		// TODO Part C Gitterdone!!!
+		int rowDiff = newRow - originalRow;
+		int columnDiff = newColumn - originalColumn;
 
+		if (isValidMove(originalRow, originalColumn, newRow, newColumn)){
+			if(isValidMove(1,1,1,1)/*TODO: replace with isJump*/){
+				if(board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2].getColor() != board[originalRow][originalColumn].getColor()){
+					
+				}
+			}else{
+				board[newRow][newColumn] = board[originalRow][originalColumn];
+				board[originalRow][originalColumn] = null;
+			}
+		}
 	}
 
 	/**
