@@ -24,10 +24,6 @@ public class Project_CompSciChecker{
             inputScanner.nextLine();
 
             cscb.makeMove(inputRow, inputColumn, inputNewRow, inputNewColumn);
-
-            System.out.println(cscb);
-
-            
         }
         
         inputScanner.close();
