@@ -52,7 +52,6 @@ public class Project_CompSciChecker{
             }while(!isThisMoveValid);
             
             cscb.makeMove(inputRow, inputColumn, inputNewRow, inputNewColumn);
-            System.out.println("JAJA");
             if(colorToMove == "W"){    
                 colorToMove = "B";
             }else{
