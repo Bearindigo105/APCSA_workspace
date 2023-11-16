@@ -32,8 +32,10 @@ public class CompSciCheckerBoard {
 				if ((j + i) % 2 == 0) {
 					if (i < 3) {
 						board[i][j] = new CompSciChecker("W");
+						numWhitePieces ++;
 					} else if (i > 4) {
 						board[i][j] = new CompSciChecker("B");
+						numBlackPieces ++;
 					}
 				}
 			}
@@ -70,7 +72,8 @@ public class CompSciCheckerBoard {
 	 * @return true if the move is: 
 	 *         one space fwd, horizontal, diagonal,
 	 *         two spaces jumping an opp piece,
-	 *         and going to an empty square. Otherwise, false
+	 *         and going to an empty square. 
+	 * 		   Otherwise, false
 	 */
 	public boolean isValidMove(int originalRow, int originalColumn, int newRow, int newColumn) {
 
@@ -87,9 +90,9 @@ public class CompSciCheckerBoard {
 
 			int direction;
 
-			if (board[originalRow][originalColumn].getColor() == "W") {
+			if(board[originalRow][originalColumn].getColor() == "W") {
 				direction = 1;
-			} else {
+			}else{
 				direction = -1;
 			}
 
@@ -112,8 +115,7 @@ public class CompSciCheckerBoard {
 			if (board[originalRow + (rowDiff / 2)][originalColumn + (columnDiff / 2)] == null) {
 				return false;
 			}
-			if ((board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2]
-					.getColor() == "W") != (board[originalRow][originalColumn].getColor() == "W")) {
+			if ((board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2].getColor() == "W") != (board[originalRow][originalColumn].getColor() == "W")) {
 				return true;
 			}
 
@@ -135,10 +137,13 @@ public class CompSciCheckerBoard {
 
 		if (isValidMove(originalRow, originalColumn, newRow, newColumn)) {
 			if (Math.abs(rowDiff) == 2 || Math.abs(columnDiff) == 2) {
-				if (board[originalRow + (rowDiff / 2)][originalColumn + (columnDiff / 2)]
-						.getColor() != board[originalRow][originalColumn].getColor()) {
+				if (board[originalRow + (rowDiff / 2)][originalColumn + (columnDiff / 2)].getColor() != board[originalRow][originalColumn].getColor()) {
+					if(board[originalRow + (rowDiff / 2)][originalColumn + (columnDiff / 2)].getColor() == "W"){
+						numWhitePieces --;
+					}else{
+						numBlackPieces --;
+					}
 					board[originalRow + (rowDiff / 2)][originalColumn + (columnDiff / 2)] = null;
-
 				}
 			}
 			board[newRow][newColumn] = board[originalRow][originalColumn];
