@@ -48,38 +48,20 @@ public class CompSciCheckerBoard {
 	public CompSciCheckerBoard() {
 		board = new CompSciChecker[8][8];
 		
-		for (int i = 0; i < 3; i++) {
-			if (i != 1){
-				for (int j = 0; j < board.length; j++) {
-					if (j % 2 == 0) {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if ((j + i) % 2 == 0) {
+					if (i < 3) {
 						board[i][j] = new CompSciChecker("W");
-					}
-				}
-			}else{
-				for (int j = 0; j < board.length; j++) {
-					if ((j + 1) % 2 == 0) {
-						board[i][j] = new CompSciChecker("W");
-					}
-				}
-			}
-		}
-		
-		for (int i = 5; i < 8; i++) {
-			if (i == 6){
-				for (int j = 0; j < board.length; j++) {
-					if (j % 2 == 0) {
+					}else if (i > 4){
 						board[i][j] = new CompSciChecker("B");
 					}
 				}
-			}else{
-				for (int j = 0; j < board.length; j++) {
-					if ((j + 1) % 2 == 0) {
-						board[i][j] = new CompSciChecker("B");
-					}
-				}
+			
 			}
 		}
 	}
+	
 
 	/**
 	 * This constructor is complete and can be used to
@@ -167,18 +149,17 @@ public class CompSciCheckerBoard {
 			return false;
 		}
 		
-		if (Math.abs(rowDiff) == 1 && Math.abs(columnDiff) == 1) {
+		if ((Math.abs(rowDiff) == 1 || rowDiff == 0) && (columnDiff == 0 || Math.abs(columnDiff) == 1)) {
 			return true;
 		}
 
-		if (Math.abs(rowDiff) == 2 && Math.abs(columnDiff) == 2) {
+		if ((Math.abs(rowDiff) == 2 || rowDiff == 0) && (Math.abs(columnDiff) == 2 || columnDiff == 0)) {
 
 			if((board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2].getColor() == "W") != (board[originalRow][originalColumn].getColor() == "W")){
 				return true;
 			}
 
 		}
-		//TODO: A Lot
 		return false;
 	}
 
@@ -191,6 +172,7 @@ public class CompSciCheckerBoard {
 	 * this method.
 	 * 
 	 */
+
 	/**
 	 * 
 	 * @param originalRow
@@ -203,14 +185,14 @@ public class CompSciCheckerBoard {
 		int columnDiff = newColumn - originalColumn;
 
 		if (isValidMove(originalRow, originalColumn, newRow, newColumn)){
-			if(isValidMove(1,1,1,1)/*TODO: replace with isJump*/){
-				if(board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2].getColor() != board[originalRow][originalColumn].getColor()){
-					
-				}
-			}else{
-				board[newRow][newColumn] = board[originalRow][originalColumn];
-				board[originalRow][originalColumn] = null;
+			
+			if(board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2].getColor() != board[originalRow][originalColumn].getColor()){
+				board[originalRow + rowDiff / 2][originalColumn + columnDiff / 2] = new CompSciChecker("H");
+
 			}
+		}else{
+			board[newRow][newColumn] = board[originalRow][originalColumn];
+			board[originalRow][originalColumn] = null;
 		}
 	}
 
