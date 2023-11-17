@@ -14,7 +14,7 @@ import org.junit.Test;
 public class CompSciCheckerUnitTests {
 
     // *****FILL IN THE FOLLOWING VARIABLE********/
-    private static String fullName = "Mr. Ellis";
+    private static String fullName = "Muthu Subhash Muthu";
 
     // ******DO NOT CHANGE ANYTHING BELOW THIS LINE OR YOUR SUBMISSION WILL BE
     // INCORRECT**********/
