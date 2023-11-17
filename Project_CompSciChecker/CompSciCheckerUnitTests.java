@@ -780,7 +780,7 @@ public class CompSciCheckerUnitTests {
 
     @AfterClass
     public static void finish() throws FileNotFoundException {
-        PrintWriter out = new PrintWriter(fullName + "_chess_output.txt");
+        PrintWriter out = new PrintWriter("Project_CompSciChecker/" + fullName + "_chess_output.txt");
         String output = fullName + ":" + correctTests + ":*****:" + nameHash + ":";
         String fileString = "";
         Scanner file = new Scanner(new File("Project_CompSciChecker/CompSciCheckerUnitTests.java"));
