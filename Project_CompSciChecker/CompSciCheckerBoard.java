@@ -76,15 +76,32 @@ public class CompSciCheckerBoard {
 	 * 		   Otherwise, false
 	 */
 	public boolean isValidMove(int originalRow, int originalColumn, int newRow, int newColumn) {
-
+		
+		if (newRow > 7 || newRow < 0){
+			return false;
+		}
+		if (newColumn > 7 || newColumn < 0){
+			return false;
+		}
+		if (originalRow > 7 || originalRow < 0){
+			return false;
+		}
+		if (originalColumn > 7 || originalColumn < 0){
+			return false;
+		}
+		
 		if (board[originalRow][originalColumn] == null) {
+			return false;
+		}
+
+		if (board[newRow][newColumn] != null){
 			return false;
 		}
 
 		int rowDiff = newRow - originalRow;
 		int columnDiff = newColumn - originalColumn;
 
-		boolean isntDirectionCorrect = false;
+		boolean isntDirectionCorrect = true;
 
 		if (originalRow != newRow) {
 
@@ -148,6 +165,16 @@ public class CompSciCheckerBoard {
 			}
 			board[newRow][newColumn] = board[originalRow][originalColumn];
 			board[originalRow][originalColumn] = null;
+			
+			if (board[newRow][newColumn].getColor() == "W"){
+				if (newRow == 7){
+					board[newRow][newColumn].setReachedEnd(true);
+				}
+			}else if(board[newRow][newColumn].getColor() == "B"){
+				if(newRow == 0){
+					board[newRow][newColumn].setReachedEnd(true);
+				}
+			}
 		}
 	}
 

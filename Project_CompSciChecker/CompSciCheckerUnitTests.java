@@ -783,7 +783,7 @@ public class CompSciCheckerUnitTests {
         PrintWriter out = new PrintWriter(fullName + "_chess_output.txt");
         String output = fullName + ":" + correctTests + ":*****:" + nameHash + ":";
         String fileString = "";
-        Scanner file = new Scanner(new File("CheckerUnitTests.java"));
+        Scanner file = new Scanner(new File("Project_CompSciChecker/CompSciCheckerUnitTests.java"));
         while (file.hasNextLine()) {
             fileString += file.nextLine();
         }
