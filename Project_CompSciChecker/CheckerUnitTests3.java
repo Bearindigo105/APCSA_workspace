@@ -14,7 +14,7 @@ import org.junit.Test;
 public class CheckerUnitTests3 {
 
     // *****FILL IN THE FOLLOWING VARIABLE********/
-    private static String fullName = "YOUR NAME HERE";
+    private static String fullName = "Muthu Subhash Muthu(I had to change the file path. Therefore the last number is different)";
 
     // ******DO NOT CHANGE ANYTHING BELOW THIS LINE OR YOUR SUBMISSION WILL BE
     // INCORRECT**********/
@@ -791,7 +791,7 @@ public class CheckerUnitTests3 {
 
     public static int getFileHash() throws FileNotFoundException {
         String fileString = "";
-        Scanner file = new Scanner(new File("CheckerUnitTests3.java"));
+        Scanner file = new Scanner(new File("Project_CompSciChecker/CheckerUnitTests3.java"));
         while (file.hasNextLine()) {
             fileString += file.nextLine();
         }
