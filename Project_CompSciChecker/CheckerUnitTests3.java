@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class CompSciCheckerUnitTests {
+public class CheckerUnitTests3 {
 
     // *****FILL IN THE FOLLOWING VARIABLE********/
     private static String fullName = "Muthu Subhash Muthu";
@@ -773,25 +773,31 @@ public class CompSciCheckerUnitTests {
     }
 
     @BeforeClass
-    public static void getStarted() {
+    public static void getStarted() throws FileNotFoundException {
         nameHash = fullName.hashCode();
-        correctTests = nameHash;
+        correctTests = nameHash + getFileHash();
     }
 
     @AfterClass
     public static void finish() throws FileNotFoundException {
-        PrintWriter out = new PrintWriter("Project_CompSciChecker/" + fullName + "_chess_output.txt");
-        String output = fullName + ":" + correctTests + ":*****:" + nameHash + ":";
+        PrintWriter out = new PrintWriter(fullName + "_chess_output.txt");
+        String output = fullName + ":" + correctTests + ":::" + nameHash + ":";
+        output += ":" + getFileHash() + ":";
+        output += output.hashCode() + ":";
+        output += getFileHash();
+        out.write(output);
+        out.close();
+    }
+
+    public static int getFileHash() throws FileNotFoundException {
         String fileString = "";
-        Scanner file = new Scanner(new File("Project_CompSciChecker/CompSciCheckerUnitTests.java"));
+        Scanner file = new Scanner(new File("CheckerUnitTests3.java"));
         while (file.hasNextLine()) {
             fileString += file.nextLine();
         }
         fileString = fileString.substring(fileString.indexOf("INCORRECT**********/"));
-        output += output.hashCode();
-        output += ":" + fileString.hashCode();
-        out.write(output);
-        out.close();
+        file.close();
+        return fileString.hashCode();
     }
 
     public CompSciChecker[][] createBoard(char[][] s) {
