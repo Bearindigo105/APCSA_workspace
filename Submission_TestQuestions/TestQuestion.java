@@ -22,7 +22,7 @@ public abstract class TestQuestion {
 	 * 
 	 */
 	public String toString() {
-		return questionNumber + ".\t" + text;
+		return questionNumber + ".\t" + text + " (" + pointValue + ")";
 	}
 
 }

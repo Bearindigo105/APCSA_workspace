@@ -13,7 +13,7 @@ public class MCQuestion extends TestQuestion {
 	}
 
 	public String toString() {
-		String retString questionNumber + ".\t" + text;
+		String retString questionNumber + ".\t" + text + " (" + pointValue + ")";
 		char choiceLetter = 'A';
 		for(String choice : choices){
 			retString += "\n" + choiceLetter + ".\t" + choice;
