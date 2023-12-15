@@ -29,9 +29,9 @@ public class TestMain{
             }else if(input.nextLine() == "ms"){
                 System.out.print("What are the correct answers(range 0 - numAnswers-1, range 0 - numAnswers-1, ...)? ");
                 String[] answerStrs = input.nextLine().split(", ");
-                int[] answerChoices = 
+                int[] answerInts = new int[answerStrs.length];
                 for(int i = 0; i < answerStrs.length; i++){
-
+                    answerInts[i] = Integer.parseInt(answerStrs[i]);
                 }
                 TestQuestions.add(new MultipleSelect());
             }

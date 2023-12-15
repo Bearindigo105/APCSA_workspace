@@ -25,7 +25,7 @@ public class MultipleSelect extends TestQuestion {
 		double increment = ((double)pointValue)/(answers.length);
 
 		for(char answerLetter : answer.toCharArray()){
-			for(char ans : answers){
+			for(boolean ans : answers){
 				if(ans == answerLetter)
 					score += increment;
 			}
