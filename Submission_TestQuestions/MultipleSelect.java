@@ -5,28 +5,29 @@ public class MultipleSelect extends TestQuestion {
 	private boolean[] answers;
 
 	public MultipleSelect(String text, int pointValue, String[] answerChoices, boolean[] answers) {
-		this.text = text;
-		this.pointValue = pointValue;
+		super(text, pointValue);
 		this.answerChoices = answerChoices;
-		this.answers = answers
+		this.answers = answers;
 	}
 
 	public String toString() {
-		String retString questionNumber + ".\t" + text + text + " (" + pointValue + ")\nSelect ALL correct answer choices as more than one may be correct:\n";
+		String retString = super.questionNumber + ".\t" + super.text + super.text + " (" + super.pointValue
+				+ ")\nSelect ALL correct answer choices as more than one may be correct:\n";
 		char choiceLetter = 'A';
-		for(String choice : answerChoices){
+		for (String choice : answerChoices) {
 			retString += "\n" + choiceLetter + ".\t" + choice;
-			choiceLetter ++;
+			choiceLetter++;
 		}
+		return retString;
 	}
 
 	public int scoreQuestion(String answer) {
 		int score = 0;
-		double increment = ((double)pointValue)/(answers.length);
+		double increment = ((double) pointValue) / (answers.length);
 
-		for(char answerLetter : answer.toCharArray()){
-			for(boolean ans : answers){
-				if(ans == answerLetter)
+		for (char answerLetter : answer.toCharArray()) {
+			for (int i = 0; i < answers.length; i++) {
+				if ((int) Character.toUpperCase(answerLetter) == i + 65)
 					score += increment;
 			}
 		}
