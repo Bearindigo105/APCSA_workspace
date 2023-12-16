@@ -27,7 +27,7 @@ public class MultipleSelect extends TestQuestion {
 
 		for (char answerLetter : answer.toCharArray()) {
 			for (int i = 0; i < answers.length; i++) {
-				if ((int) Character.toUpperCase(answerLetter) == i + 65)
+				if (answerLetter == i + 65)
 					score += increment;
 			}
 		}
