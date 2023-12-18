@@ -14,7 +14,7 @@ import org.junit.Test;
 public class TestQuestionUnitTests {
 
     // *****FILL IN THE FOLLOWING VARIABLE********/
-    private static String fullName = "YOUR NAME HERE";
+    private static String fullName = "Muthu Subhash Muthu";
 
     // ******DO NOT CHANGE ANYTHING BELOW THIS LINE OR YOUR SUBMISSION WILL BE
     // INCORRECT**********/
