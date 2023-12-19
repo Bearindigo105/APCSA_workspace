@@ -22,17 +22,23 @@ public class MultipleSelect extends TestQuestion {
 	}
 
 	public int scoreQuestion(String answer) {
-		int score = 0;
-		double increment = ((double) pointValue) / (answers.length);
+		double score = 0;
+		double numCorrectAns = 0;
+		for (boolean correctAns : answers) {
+			if (correctAns)
+				numCorrectAns++;
+		}
+		int increment = (int) (pointValue / numCorrectAns);
 
 		for (char answerLetter : answer.toCharArray()) {
 			for (int i = 0; i < answers.length; i++) {
-				if (answerLetter == i + 65)
+				if (Character.toUpperCase(answerLetter) == i + 65 && answers[i])
 					score += increment;
+				
 			}
 		}
 
-		return score;
+		return (int) score;
 	}
 
 }

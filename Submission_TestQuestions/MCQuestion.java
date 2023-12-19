@@ -27,7 +27,7 @@ public class MCQuestion extends TestQuestion {
 				answerLetter++;
 			}
 		}
-		if (answer == this.answer || answer.charAt(0) == answerLetter) {
+		if (answer.toLowerCase().equals(this.answer.toLowerCase()) || Character.toUpperCase(answer.charAt(0)) == answerLetter) {
 			return pointValue;
 		}
 		return 0;
