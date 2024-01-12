@@ -11,7 +11,7 @@ public class MultipleSelect extends TestQuestion {
 	}
 
 	public String toString() {
-		String retString = super.questionNumber + ".\t" + super.text + " (" + super.pointValue
+		String retString = questionNumber + ".\t" + text + " (" + pointValue
 				+ " pts)\nSelect ALL correct answer choices as more than one may be correct:\n";
 		char choiceLetter = 'A';
 		for (String choice : answerChoices) {
