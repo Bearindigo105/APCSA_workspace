@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class MergeSort {
 
 	public static void main(String[] args){
-		int[] start = new int[10];
+		int[] start = new int[9];
 		for(int i = 0; i < start.length; i++)
 		{
 			start[i] = (int)(Math.random()*20 + 1);
@@ -26,9 +26,15 @@ public class MergeSort {
 	 */
 	
 	public static void mergesort(int[] arr){
-		int[] arrL = Arrays.copyOfRange(arr, 0, arr.length/2);
-		int[] arrR = Arrays.copyOfRange(arr, arr.length/2, arr.length);
-		System.out.println(arrL[arrL.length] + " " + arrR[0]);
+		if(arr.length == 1){
+
+		}else{
+			int[] arrL = Arrays.copyOfRange(arr, 0, arr.length/2);
+			int[] arrR = Arrays.copyOfRange(arr, arr.length/2, arr.length);
+			mergesort(arrR);
+			mergesort(arrL);
+			arr = arrL;
+		}
 	}
 
 }
