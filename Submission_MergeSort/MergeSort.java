@@ -4,9 +4,8 @@ public class MergeSort {
 
 	public static void main(String[] args) {
 		int[] start = new int[10];
-		for(int i = 0; i < start.length; i++)
-		{
-		start[i] = (int)(Math.random()*20 + 1);
+		for (int i = 0; i < start.length; i++) {
+			start[i] = (int) (Math.random() * 20 + 1);
 		}
 		int[] sorted = Arrays.copyOf(start, start.length);
 		Arrays.sort(sorted);
