@@ -38,19 +38,15 @@ public class GamePanel extends JPanel implements ActionListener{
                 switch (code) {
                     case KeyEvent.VK_W:
                         hiro.setDy(-3);
-                        hiro.setDirection(Hiro.Direction.UP);
                         break;
                     case KeyEvent.VK_S:
                         hiro.setDy(3);
-                        hiro.setDirection(Hiro.Direction.DOWN);
                         break;
                     case KeyEvent.VK_A:
                         hiro.setDx(-3);
-                        hiro.setDirection(Hiro.Direction.LEFT);
                         break;
                     case KeyEvent.VK_D:
                         hiro.setDx(3);
-                        hiro.setDirection(Hiro.Direction.RIGHT);
                         break;
                     default:
                         break;
@@ -95,5 +91,6 @@ public class GamePanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         hiro.update();
+        hiro.setDirection();
     }
 }

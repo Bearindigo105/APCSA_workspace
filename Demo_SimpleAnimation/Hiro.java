@@ -3,13 +3,6 @@ import javax.swing.JLabel;
 
 public class Hiro extends JLabel {
 
-    public enum Direction {
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN
-    }
-
     private ImageIcon[][] icons;
     private int direction;
     private int phase;
@@ -31,39 +24,23 @@ public class Hiro extends JLabel {
         this.setIcon(icons[direction][phase]);
     }
 
-    public void setDirection(Direction direction) {
-        switch (direction) {
-            case UP:
-                this.direction = 2;
-                break;
-            case DOWN:
-                this.direction = 0;
-                break;
-            case LEFT:
-                this.direction = 3;
-                break;
-            case RIGHT:
-                this.direction = 1;
-                break;
-            default:
-                break;
+    public void setDirection() {
+        if(dx > 0){
+            this.direction = 1;
+        }else if (dx < 0){
+            this.direction = 3;
+        }
+        if(dy > 0){
+            this.direction = 0;
+        }else if (dy < 0){
+            this.direction = 2;
         }
     }
 
     public void update() {
         if (dx == 0 && dy == 0) {
-            
+            this.setIdle();
         } else {
-            if(dx > 0){
-                
-            }else{
-
-            }
-            if(dy > 0){
-
-            }else{
-
-            }
             this.setLocation(this.getX() + dx, this.getY() + dy);
             updateIcon();
         }
