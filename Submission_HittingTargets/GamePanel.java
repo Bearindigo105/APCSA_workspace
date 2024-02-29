@@ -24,8 +24,8 @@ public class GamePanel extends JPanel implements ActionListener {
     private Hero hero;
     
     private ArrayList<Fireball> fireballs = new ArrayList<Fireball>();
-
-
+    private ArrayList<Target> targets = new ArrayList<Target>();
+    
     /**
      * Construct a game panel and initialize the game
      */
@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        addTarget();
         this.add(hero);
         // Handle key presses. We will set dx/dy for the character
         this.addKeyListener(new KeyListener() {
@@ -121,6 +121,12 @@ public class GamePanel extends JPanel implements ActionListener {
         this.add(tempFireball);
     }
 
+    public void addTarget(){
+        Target tempTarget = new Target(50, 50);
+        targets.add(tempTarget);
+        this.add(tempTarget);
+    }
+
     // render the gamePanel with the background image
     @Override
     public void paintComponent(Graphics g) {
@@ -136,6 +142,16 @@ public class GamePanel extends JPanel implements ActionListener {
         hero.update();
         for(Fireball fireball : fireballs){
             fireball.update();
+            for (Target target : targets) {
+                target.hasCollidedWith(fireball);
+            }
+            if(fireball.getHasCollided()){
+                this.remove(fireball);
+            }
+        }
+        for(Target target : targets){
+            target.update();
+            
         }
     }
 

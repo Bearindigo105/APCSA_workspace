@@ -1,4 +1,3 @@
-
 import javax.swing.ImageIcon;
 
 public class Hero extends GameObject {
@@ -74,10 +73,6 @@ public class Hero extends GameObject {
     public void setDx(int dx) {
         this.dx = dx;
     }
-    //me
-    public int getDx(){
-        return dx;
-    }
 
     /**
      * set dy for the character to make him move vertically
@@ -86,10 +81,6 @@ public class Hero extends GameObject {
      */
     public void setDy(int dy) {
         this.dy = dy;
-    }
-    //me
-    public int getDy(){
-        return dy;
     }
     
     
