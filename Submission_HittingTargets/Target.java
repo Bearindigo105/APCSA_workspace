@@ -20,7 +20,7 @@ public class Target extends GameObject {
     public Target(int x, int y) {
         super(x, y);
         this.setSize(32, 36);
-        phase = 0;
+        phase = 3;
         phaseCounter = 0;
         icons = new ImageIcon[4];
 

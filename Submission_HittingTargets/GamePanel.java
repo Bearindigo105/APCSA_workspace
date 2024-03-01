@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements ActionListener {
     
     private ArrayList<Fireball> fireballs = new ArrayList<Fireball>();
     private ArrayList<Target> targets = new ArrayList<Target>();
-    
+
     /**
      * Construct a game panel and initialize the game
      */
@@ -74,10 +74,6 @@ public class GamePanel extends JPanel implements ActionListener {
                         hero.setDx(5);// horizontal v Vertical mutually exclusive
                         hero.setDirection(new Direction(Direction.RIGHT));
                         break;
-                        //me
-                        case  KeyEvent.VK_SPACE:
-                            addFireball();
-                            break;
                 }
             }
 
@@ -101,6 +97,11 @@ public class GamePanel extends JPanel implements ActionListener {
                         hero.setDx(0);
                         hero.setIdle();
                         break;
+                    
+                    //me
+                    case  KeyEvent.VK_SPACE:
+                        addFireball();
+                        break;
                 }
             }
 
@@ -122,7 +123,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void addTarget(){
-        Target tempTarget = new Target(50, 50);
+        Target tempTarget = new Target((int)(Math.random() * 450 - 30), (int)(Math.random() * 450 - 30));
         targets.add(tempTarget);
         this.add(tempTarget);
     }
@@ -140,19 +141,23 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         hero.update();
-        for(Fireball fireball : fireballs){
-            fireball.update();
-            for (Target target : targets) {
-                target.hasCollidedWith(fireball);
+        //me
+        for(int i = 0; i < fireballs.size(); i++){
+            fireballs.get(i).update();
+            for (int j = 0; j < targets.size(); j++) {
+                if(targets.get(j).hasCollidedWith(fireballs.get(i))){
+                    this.remove(fireballs.get(i));
+                    fireballs.remove(fireballs.get(i));
+                    this.remove(targets.get(j));
+                    targets.remove(targets.get(j));
+                    this.repaint();
+                    this.addTarget();
+                }
             }
-            if(fireball.getHasCollided()){
-                this.remove(fireball);
-            }
-        }
-        for(Target target : targets){
-            target.update();
             
         }
+        for(int i = 0; i < targets.size(); i++){
+            targets.get(i).update();
+        }
     }
-
 }

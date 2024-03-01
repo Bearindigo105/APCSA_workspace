@@ -40,8 +40,8 @@ public class Hero extends GameObject {
         this.direction = direction.getDirection();
     }
 
-    //me
-    public Direction getDirection(){
+    // me
+    public Direction getDirection() {
         return new Direction(this.direction);
     }
 
@@ -82,8 +82,20 @@ public class Hero extends GameObject {
     public void setDy(int dy) {
         this.dy = dy;
     }
-    
-    
+
+    // me
+    public boolean hasCollidedWithWall() {
+        if (this.getX() > 490 - this.getWidth()) {
+            return true;
+        } else if (this.getX() < -50 + this.getWidth()) {
+            return true;
+        } else if (this.getY() > 470 - this.getHeight()) {
+            return true;
+        } else if (this.getY() < -50 + this.getHeight()) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * update the character's location and image based on the dx and dy
@@ -92,6 +104,9 @@ public class Hero extends GameObject {
         if (dx != 0 || dy != 0) {
             this.setLocation(this.getX() + dx, this.getY() + dy);
             this.updateIcon();
+        }
+        if (hasCollidedWithWall()) {
+            this.setLocation(this.getX() - dx, this.getY() - dy);
         }
     }
 }

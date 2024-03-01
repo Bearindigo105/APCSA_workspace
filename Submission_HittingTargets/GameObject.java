@@ -7,12 +7,9 @@ import javax.swing.JLabel;
  * 
  */
 public abstract class GameObject extends JLabel {
-    
-    private boolean hasCollided;
 
     public GameObject(int x, int y) {
         this.setLocation(x, y);
-        hasCollided = false;
     }
 
     /**
@@ -24,16 +21,7 @@ public abstract class GameObject extends JLabel {
      */
     public boolean hasCollidedWith(GameObject other) {
         //me
-        
         return other.getBounds().intersects(this.getBounds());
-    }
-
-    public void setHasCollided(boolean hasCollided){
-        this.hasCollided = hasCollided;
-    }
-
-    public boolean getHasCollided(){
-        return hasCollided;
     }
 
     public abstract void update();
