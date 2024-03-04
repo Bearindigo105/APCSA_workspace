@@ -1,11 +1,11 @@
 import javax.swing.JLabel;
 
 
-public class Scoreboard extends JLabel{
+public class Score extends JLabel{
     
     private int score = 0;
 
-    public Scoreboard(){
+    public Score(){
         
         this.setSize(100, 20);
         this.setLocation(10,10);

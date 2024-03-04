@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private BufferedImage background;
     private Hero hero;
-    private Scoreboard scoreboard;
+    private Score scoreboard;
 
     private ArrayList<Fireball> fireballs = new ArrayList<Fireball>();
     private ArrayList<Target> targets = new ArrayList<Target>();
@@ -34,7 +34,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public GamePanel() {
         this.setLayout(null);
         hero = new Hero(100, 100);
-        scoreboard = new Scoreboard();
+        scoreboard = new Score();
 
         URL imageURL = getClass().getResource("./images/background/gray_tile_background.png");
 
@@ -48,7 +48,7 @@ public class GamePanel extends JPanel implements ActionListener {
         addTarget();
         this.add(hero);
         this.add(scoreboard);
-        
+
         // Handle key presses. We will set dx/dy for the character
         this.addKeyListener(new KeyListener() {
 
