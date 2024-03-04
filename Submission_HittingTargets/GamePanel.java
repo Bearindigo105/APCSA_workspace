@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import java.awt.Graphics;
@@ -130,7 +129,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void addTarget(){
-        Target tempTarget = new Target((int)(Math.random() * 450 - 30), (int)(Math.random() * 450 - 30));
+        Target tempTarget = new Target((int)(Math.random() * 450 - 20), (int)(Math.random() * 450 - 20));
         targets.add(tempTarget);
         this.add(tempTarget);
     }
@@ -148,9 +147,11 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         hero.update();
+        hero.updateCollisions(this);
         //me
         for(int i = 0; i < fireballs.size(); i++){
             fireballs.get(i).update();
+            
             for (int j = 0; j < targets.size(); j++) {
                 if(targets.get(j).hasCollidedWith(fireballs.get(i))){
                     this.remove(fireballs.get(i));
@@ -162,7 +163,12 @@ public class GamePanel extends JPanel implements ActionListener {
                     this.scoreboard.incrementScore();
                 }
             }
-            
+        }
+        for(int i = 0; i < fireballs.size(); i++){
+            if(fireballs.get(i).hasGoneOffPanel(this)){
+                this.remove(fireballs.get(i));
+                fireballs.remove(fireballs.get(i));
+            }
         }
         for(int i = 0; i < targets.size(); i++){
             targets.get(i).update();

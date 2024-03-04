@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 public class Target extends GameObject {
     //me
     private ImageIcon[] icons;
-    private boolean toBlink;
     private int phase;
     private int phaseCounter;
     
@@ -43,11 +42,6 @@ public class Target extends GameObject {
     @Override
     public void update() {
         if(Math.random() < 0.04 || phase % 4 != 0){
-            toBlink = true;
-        }else{
-            toBlink = false;
-        }
-        if(toBlink){
             updateIcon();
         }
     }

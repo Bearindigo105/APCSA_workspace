@@ -1,4 +1,5 @@
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public class Hero extends GameObject {
 
@@ -84,29 +85,34 @@ public class Hero extends GameObject {
     }
 
     // me
-    public boolean hasCollidedWithWall() {
-        if (this.getX() > 490 - this.getWidth()) {
+    public boolean hasCollidedWithWall(JPanel panel) {
+        if (this.getX() > panel.getWidth() - panel.getX() - this.getWidth()) {
             return true;
-        } else if (this.getX() < -50 + this.getWidth()) {
+        } else if (this.getX() < -40 + this.getWidth()) {
             return true;
-        } else if (this.getY() > 470 - this.getHeight()) {
+        } else if (this.getY() > panel.getHeight() - panel.getY() - this.getHeight()) {
             return true;
-        } else if (this.getY() < -50 + this.getHeight()) {
+        } else if (this.getY() < -40 + this.getHeight()) {
             return true;
         }
         return false;
     }
 
+    public void updateCollisions(JPanel panel){
+        if (hasCollidedWithWall(panel)) {
+            this.setLocation(this.getX() - dx, this.getY() - dy);
+        }
+    }
+
+
     /**
      * update the character's location and image based on the dx and dy
      */
+    @Override
     public void update() {
         if (dx != 0 || dy != 0) {
             this.setLocation(this.getX() + dx, this.getY() + dy);
             this.updateIcon();
-        }
-        if (hasCollidedWithWall()) {
-            this.setLocation(this.getX() - dx, this.getY() - dy);
         }
     }
 }

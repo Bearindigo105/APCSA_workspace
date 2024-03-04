@@ -15,6 +15,9 @@ public class Animation {
         frame.setResizable(false);
 
         GamePanel gamePanel = new GamePanel();
+        
+        gamePanel.setSize(500,500);
+        gamePanel.setLocation(-50, -50);
 
         frame.add(gamePanel);
 

@@ -1,4 +1,5 @@
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 /**
  * Create a class representing our projectiles. These
@@ -45,6 +46,19 @@ public class Fireball extends GameObject {
                 break;
         }
         this.setIcon(icon);
+    }
+
+    public boolean hasGoneOffPanel(JPanel panel){
+        if (this.getX() > panel.getWidth() + 100 - panel.getX() - this.getWidth()) {
+            return true;
+        } else if (this.getX() < -100 + this.getWidth()) {
+            return true;
+        } else if (this.getY() > panel.getHeight() + 100 - panel.getY() - this.getHeight()) {
+            return true;
+        } else if (this.getY() < -100 + this.getHeight()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
