@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import java.awt.Graphics;
@@ -22,7 +23,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
     private BufferedImage background;
     private Hero hero;
-    
+    private Scoreboard scoreboard;
+
     private ArrayList<Fireball> fireballs = new ArrayList<Fireball>();
     private ArrayList<Target> targets = new ArrayList<Target>();
 
@@ -32,6 +34,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public GamePanel() {
         this.setLayout(null);
         hero = new Hero(100, 100);
+        scoreboard = new Scoreboard();
 
         URL imageURL = getClass().getResource("./images/background/gray_tile_background.png");
 
@@ -40,8 +43,12 @@ public class GamePanel extends JPanel implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
         addTarget();
         this.add(hero);
+        this.add(scoreboard);
+        
         // Handle key presses. We will set dx/dy for the character
         this.addKeyListener(new KeyListener() {
 
@@ -152,6 +159,7 @@ public class GamePanel extends JPanel implements ActionListener {
                     targets.remove(targets.get(j));
                     this.repaint();
                     this.addTarget();
+                    this.scoreboard.incrementScore();
                 }
             }
             
