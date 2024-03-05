@@ -129,7 +129,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void addTarget(){
-        Target tempTarget = new Target((int)(Math.random() * 450 - 20), (int)(Math.random() * 450 - 20));
+        Target tempTarget = new Target((int)(Math.random() * this.getWidth()), (int)(Math.random() * this.getHeight()));
         targets.add(tempTarget);
         this.add(tempTarget);
     }

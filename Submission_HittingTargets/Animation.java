@@ -16,7 +16,7 @@ public class Animation {
 
         GamePanel gamePanel = new GamePanel();
         
-        gamePanel.setSize(500,500);
+        gamePanel.setSize(frame.getWidth(),frame.getHeight());
         gamePanel.setLocation(-50, -50);
 
         frame.add(gamePanel);
