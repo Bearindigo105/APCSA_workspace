@@ -23,8 +23,8 @@ public class GamePanel extends JPanel implements ActionListener {
     private BufferedImage background;
     private Hero hero;
     private Score scoreboard;
+    private Fireball fireball;
 
-    private ArrayList<Fireball> fireballs = new ArrayList<Fireball>();
     private ArrayList<Target> targets = new ArrayList<Target>();
 
     /**
@@ -52,9 +52,7 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(new KeyListener() {
 
             @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
+            public void keyTyped(KeyEvent e) {}
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -123,9 +121,11 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     //me
     public void addFireball(){
-        Fireball tempFireball = new Fireball(hero.getX(), hero.getY(), hero.getDirection());
-        fireballs.add(tempFireball);
-        this.add(tempFireball);
+        if(fireball == null){
+            fireball = new Fireball(hero.getX(), hero.getY(), hero.getDirection());
+            this.add(fireball);
+            this.repaint();
+        }
     }
 
     public void addTarget(){
@@ -147,28 +147,25 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         hero.update();
-        hero.updateCollisions(this);
         //me
-        for(int i = 0; i < fireballs.size(); i++){
-            fireballs.get(i).update();
-            
-            for (int j = 0; j < targets.size(); j++) {
-                if(targets.get(j).hasCollidedWith(fireballs.get(i))){
-                    this.remove(fireballs.get(i));
-                    fireballs.remove(fireballs.get(i));
-                    this.remove(targets.get(j));
-                    targets.remove(targets.get(j));
-                    this.repaint();
-                    this.addTarget();
-                    this.scoreboard.incrementScore();
-                }
+        hero.updateCollisions(this);
+        if(fireball != null){
+            fireball.update();
+        }
+        for (int j = 0; j < targets.size(); j++) {
+            if(fireball != null && targets.get(j).hasCollidedWith(fireball)){
+                this.remove(fireball);
+                fireball = null;
+                this.remove(targets.get(j));
+                targets.remove(targets.get(j));
+                this.repaint();
+                this.addTarget();
+                this.scoreboard.incrementScore();
             }
         }
-        for(int i = 0; i < fireballs.size(); i++){
-            if(fireballs.get(i).hasGoneOffPanel(this)){
-                this.remove(fireballs.get(i));
-                fireballs.remove(fireballs.get(i));
-            }
+        if(fireball != null && fireball.hasGoneOffPanel(this)){
+            this.remove(fireball);
+            fireball = null;
         }
         for(int i = 0; i < targets.size(); i++){
             targets.get(i).update();
