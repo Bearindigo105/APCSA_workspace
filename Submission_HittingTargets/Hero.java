@@ -88,11 +88,11 @@ public class Hero extends GameObject {
     public boolean hasCollidedWithWall(JPanel panel) {
         if (this.getX() > panel.getWidth() - panel.getX() - this.getWidth()) {
             return true;
-        } else if (this.getX() < -40 + this.getWidth()) {
+        } else if (this.getX() < -32 + this.getWidth()) {
             return true;
         } else if (this.getY() > panel.getHeight() - panel.getY() - this.getHeight()) {
             return true;
-        } else if (this.getY() < -40 + this.getHeight()) {
+        } else if (this.getY() < -36 + this.getHeight()) {
             return true;
         }
         return false;
