@@ -1,5 +1,5 @@
 Subhash Muthu
-
+This is an explanation of what was changed from the given files.
 
 In Animation.java, I added a line of code to set the size of the gamePanel so that the gamePanel's width and height would be readable in later parts of the program instead of just being zero.
 
