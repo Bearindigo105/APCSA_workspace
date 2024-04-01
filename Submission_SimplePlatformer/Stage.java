@@ -1,30 +1,28 @@
+import javax.swing.JComponent;
+
+
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
 
 public class Stage extends JComponent{
     
-    private ArrayList<Rectangle> platforms;
+    private ArrayList<Platform> platforms;
 
     public Stage(){
-        this.setLocation(0, 0);
-        platforms = new ArrayList<Rectangle>();
-    }
-    
-    @Override
-    public void paintComponent(Graphics g){
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.darkGray);
-        for (Rectangle platform : platforms) {
-            g2.fill(platform);
-        }
+        platforms = new ArrayList<Platform>();
+        platforms.add(new Platform(0, 460, 960, 540, Color.BLACK));
+        platforms.add(new Platform(650,170,80,25, Color.LIGHT_GRAY));
+        platforms.add(new Platform(150,200,80,25, Color.BLUE));
+        platforms.add(new Platform(250,350,80,25, Color.RED));
+        platforms.add(new Platform(590,100,40,40, Color.GREEN));
+        platforms.add(new Platform(300,80,200,25, Color.DARK_GRAY));
+
     }
 
-    public ArrayList<Rectangle> getPlatforms() {
+    public ArrayList<Platform> getPlatforms() {
         return platforms;
     }
 }
+
+
