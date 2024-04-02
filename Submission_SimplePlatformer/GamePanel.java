@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements ActionListener{
@@ -29,9 +28,7 @@ public class GamePanel extends JPanel implements ActionListener{
         this.addKeyListener(new KeyListener() {
 
             @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
+            public void keyTyped(KeyEvent e) {}
 
             @Override
             public void keyPressed(KeyEvent e) {
@@ -59,6 +56,9 @@ public class GamePanel extends JPanel implements ActionListener{
                         break;
                     case KeyEvent.VK_D:
                         player.setDx(0);
+                        break;
+                    case KeyEvent.VK_W:
+                        player.setDy(player.getDy() + 3);
                         break;
                 }
             }
