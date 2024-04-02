@@ -30,7 +30,6 @@ public class Player extends GameObject {
 
     public void update(){
         this.setLocation(this.getX() + (int)dx, this.getY() + (int)dy);
-        System.out.println(canJump);
         if(dy + GCONSTANT < 11){
             dy += GCONSTANT;
         }else{
@@ -39,7 +38,6 @@ public class Player extends GameObject {
         if(dy > 1.25){
             canJump = false;
         }
-        System.out.println(dy);
     }
 
     @Override
@@ -59,7 +57,7 @@ public class Player extends GameObject {
             }
             else if(this.getY() <= other.getY() + other.getHeight() && this.getY() + this.getHeight() > other.getY() + other.getHeight()){
                 this.setLocation(this.getX(), other.getY() + other.getHeight());
-                dy = 0.25;
+                dy *= -0.6;
             }else if(this.getX() <= other.getX() + other.getWidth() && this.getX() + this.getWidth() > other.getX() + other.getWidth()){
                 this.setLocation(other.getX() + other.getWidth(), this.getY());
                 dx = 0.1;
@@ -74,6 +72,7 @@ public class Player extends GameObject {
     public void checkBounds(int width, int height) {
         if (this.getY() < 0) {
             this.setLocation(this.getX(), 0);
+            dy *= -0.6;
         }
         if (this.getX() < 0) {
             this.setLocation(0, this.getY());
