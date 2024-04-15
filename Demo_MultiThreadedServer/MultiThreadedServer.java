@@ -72,7 +72,7 @@ class ClientHandler implements Runnable{
             System.out.println(name + " disconnected");
             MultiThreadedServer.removeClient();
         } catch (Exception e) {
-            System.out.println("Oopsie... IOException");
+            System.out.println("Oopsie... IOException: " + name);
         }
     }
 
